@@ -1,0 +1,1 @@
+This is the GIT repository for the HRNUG Reporting Services demonstration on 13 Sept 2011.
