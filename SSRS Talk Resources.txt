@@ -1,0 +1,49 @@
+Resources:
+Got Report Viewer tutorials
+http://www.gotreportviewer.com/
+
+SQL Server 2008 R2 Express with Advanced Services (x64)
+http://blogs.msdn.com/b/petersad/archive/2010/04/26/installing-sql-server-2008-r2-express.aspx
+
+Git for this project:
+https://github.com/HRNUGReportingDemo/HRNUGReportingDemo
+http://help.github.com/win-set-up-git/
+
+
+Textbox Properties/Font/Color
+=IIF(Fields!Age.Value<=65,IIF(Fields!Age.Value>=21,"Black","Red"),"Blue")
+
+
+http://social.msdn.microsoft.com/Forums/en-US/sqlreportingservices/thread/e8da121a-c0ac-4d0b-8774-abd5128d88fe
+If you have tried to deploy and failed, you must close and reopen your SSBIDS to deploy!
+
+
+Add a parameter: @parameter within the SQL
+            if (!IsPostBack)
+            {
+                ReportParameter maxAgeParameter = new ReportParameter("MaxAge", "55");
+                this.ReportViewer1.ServerReport.SetParameters(new ReportParameter[] {maxAgeParameter});
+                this.ReportViewer1.ShowParameterPrompts = false;
+            }
+
+			
+Export into Word, Excel, PDF:
+
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType;
+            string encoding;
+            string filenameExtension;
+
+            byte[] bytes = this.reportViewer1.LocalReport.Render(
+                "Word", null, out mimeType, out encoding, out filenameExtension,
+                out streamids, out warnings);
+
+            using (FileStream fs = new FileStream("output.doc", FileMode.Create))
+            {
+                fs.Write(bytes, 0, bytes.Length);
+            }
+
+RSS feed:
+) Create a new XML Data Source
+) Create a new Data Set and add the fields you want on the report
