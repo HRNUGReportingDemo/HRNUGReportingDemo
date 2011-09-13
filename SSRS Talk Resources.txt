@@ -1,14 +1,16 @@
+Larry Smithmier
+larry@smithmier.com
+
 Resources:
+Git for this project:
+https://github.com/HRNUGReportingDemo/HRNUGReportingDemo
+http://help.github.com/win-set-up-git/
+
 Got Report Viewer tutorials
 http://www.gotreportviewer.com/
 
 SQL Server 2008 R2 Express with Advanced Services (x64)
 http://blogs.msdn.com/b/petersad/archive/2010/04/26/installing-sql-server-2008-r2-express.aspx
-
-Git for this project:
-https://github.com/HRNUGReportingDemo/HRNUGReportingDemo
-http://help.github.com/win-set-up-git/
-
 
 Textbox Properties/Font/Color
 =IIF(Fields!Age.Value<=65,IIF(Fields!Age.Value>=21,"Black","Red"),"Blue")
