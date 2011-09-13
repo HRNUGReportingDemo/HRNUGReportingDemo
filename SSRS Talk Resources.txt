@@ -47,3 +47,44 @@ Export into Word, Excel, PDF:
 RSS feed:
 ) Create a new XML Data Source
 ) Create a new Data Set and add the fields you want on the report
+
+
+Setting up the SQL tables used in the example:
+
+CREATE TABLE [dbo].[Ages](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[NameId] [int] NOT NULL,
+	[Age] [int] NOT NULL,
+ CONSTRAINT [PK_Ages] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[Names](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[SortKey] [int] NOT NULL,
+ CONSTRAINT [PK_Names] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+
+Declare @maxRandomValue tinyint = 99
+	, @minRandomValue tinyint = 12;
+
+Declare @nameMaxRandomValue tinyint = 6
+	, @nameMinRandomValue tinyint = 1;
+ 
+insert into ages (age, nameid) Select Cast(((@maxRandomValue + 1) - @minRandomValue) 
+	* Rand() + @minRandomValue As tinyint) As 'age', Cast(((@nameMaxRandomValue + 1) - @nameMinRandomValue) 
+	* Rand() + @nameMinRandomValue As tinyint) As 'nameid'
+
+select * from ages	
+	select n.Name, a.Age, n.SortKey from ages a join names n on a.NameId=n.Id
